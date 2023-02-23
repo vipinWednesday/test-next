@@ -9,7 +9,6 @@ import { compose } from "redux";
 import { fonts } from "@themes/index";
 import { useFetchRecommendationQuery } from "@features/repos/api/getRecommendations";
 import { useRouter } from "next/router";
-
 const { Search } = Input;
 
 interface RepoContainerProps {

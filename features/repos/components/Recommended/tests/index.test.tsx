@@ -5,8 +5,30 @@
  */
 
 import React from "react";
+import { rest } from "msw";
+import { setupServer } from "msw/node";
 import { render } from "@utils/testUtils";
 import Recommended from "../index";
+
+export const handlers = [
+  rest.get("/campaigns", (req, res, ctx) => {
+    return res(
+      ctx.json({
+        campaign: {
+          id: "sdasda",
+        },
+      })
+    );
+  }),
+];
+
+const server = setupServer(...handlers);
+
+beforeAll(() => server.listen());
+
+afterEach(() => server.restoreHandlers());
+
+afterAll(() => server.close());
 
 describe("<Recommended />", () => {
   const props = {
